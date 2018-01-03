@@ -18,6 +18,7 @@
             "typings"
         ],
         "baseUrl": "./src",
+        "outDir": "./lib",
         "allowJs": false
     },
     "exclude": [
