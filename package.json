@@ -1,0 +1,37 @@
+{
+    "name": "tiny-redux",
+    "version": "1.0.0",
+    "description": "Demonstrative achievement of Redux,React-Redux,Redux-Thunk",
+    "main": "./lib/redux.js",
+    "repository": "git@github.com:thundernet8/TinyRedux.git",
+    "author": "WuXueqian <wuxueqian2010@hotmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc",
+        "test": "ts-mocha -p ./ test/**/*.spec.ts test/**/*.spec.tsx"
+    },
+    "devDependencies": {
+        "@types/prop-types": "^15.5.2",
+        "@types/react": "^16.0.34",
+        "assert": "^1.4.1",
+        "chai": "^4.1.2",
+        "custom-tslint-rules-collection": "^1.1.0",
+        "enzyme": "^3.3.0",
+        "enzyme-adapter-react-16": "^1.1.1",
+        "jsdom": "^11.5.1",
+        "jsdom-global": "^3.0.2",
+        "mocha": "^4.1.0",
+        "react-addons-test-utils": "^15.6.2",
+        "react-dom": "^16.2.0",
+        "ts-mocha": "^1.1.0",
+        "tslint": "^5.8.0",
+        "tslint-eslint-rules": "^4.1.1",
+        "tslint-react": "^3.3.3",
+        "typescript": "^2.6.2"
+    },
+    "dependencies": {
+        "@types/mocha": "^2.2.45",
+        "prop-types": "^15.6.0",
+        "react": "^16.2.0"
+    }
+}
