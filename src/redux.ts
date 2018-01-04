@@ -63,8 +63,38 @@ export function combineReducers(reducers) {
     };
 }
 
+export function compose(...funcs) {
+    if (funcs.length === 0) {
+        return arg => arg;
+    }
+
+    if (funcs.length === 1) {
+        return funcs[0];
+    }
+
+    return funcs.reduce((previous, current) => {
+        return (...args) => previous(current(...args));
+    });
+}
+
 export function applyMiddleware(...middlewares) {
-    // TODO
+    return createStore => (...args) => {
+        const store = createStore(...args);
+
+        const dispatch = compose(...middlewares.map(middleware => middleware(middlewareArgs)))(
+            store.dispatch
+        );
+
+        const middlewareArgs = {
+            getState: store.getState,
+            dispatch
+        };
+
+        return {
+            ...store,
+            dispatch
+        };
+    };
 }
 
 export function bindActionsCreators(creators, dispatch) {
