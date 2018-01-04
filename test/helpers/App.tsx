@@ -39,7 +39,7 @@ const ConnectApp = connect(
             todos: state.todos
         };
     },
-    (state, dispatch) => {
+    (_state, _dispatch) => {
         return {};
     }
 )(App);
