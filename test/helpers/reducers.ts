@@ -1,5 +1,6 @@
 import {
-    ADD_TODO
+    ADD_TODO,
+    LOGIN
     // DISPATCH_IN_MIDDLE,
     // GET_STATE_IN_MIDDLE,
     // SUBSCRIBE_IN_MIDDLE,
@@ -14,9 +15,21 @@ export function todos(state = [], action) {
                 ...state,
                 {
                     id: Symbol(),
-                    text: action.text
+                    text: action.payload.text
                 }
             ];
+
+        default:
+            return state;
+    }
+}
+
+export function user(state = {}, action) {
+    switch (action.type) {
+        case LOGIN:
+            return {
+                name: action.payload.name
+            };
 
         default:
             return state;

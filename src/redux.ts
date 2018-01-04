@@ -22,10 +22,6 @@ export function createStore(reducer) {
         return action;
     }
 
-    function combineReducers(reducers) {
-        // TODO
-    }
-
     // get the initial state
     dispatch({
         type: "@@INIT"
@@ -34,8 +30,36 @@ export function createStore(reducer) {
     return {
         getState,
         subscribe,
-        dispatch,
-        combineReducers
+        dispatch
+    };
+}
+
+export function combineReducers(reducers) {
+    const combinedReducers = {};
+
+    Object.keys(reducers).forEach(key => {
+        if (typeof reducers[key] === "function") {
+            combinedReducers[key] = reducers[key];
+        }
+    });
+
+    return function(state = {}, action: IAction) {
+        const nextState = {};
+        let hasChanged = false;
+        Object.keys(combinedReducers).forEach(key => {
+            const reducer = combinedReducers[key];
+            const previousKeyState = state[key];
+            const nextKeyState = reducer(previousKeyState, action);
+
+            if (typeof nextKeyState === "undefined") {
+                throw new Error("unexpect new state");
+            }
+
+            nextState[key] = nextKeyState;
+            hasChanged = hasChanged || nextKeyState !== previousKeyState;
+        });
+
+        return hasChanged ? nextState : state;
     };
 }
 
